@@ -1,0 +1,136 @@
+<!-- This VCL exporter was created using Meta (Llama) AI with slight modification by me (N Paul). -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VCL Exporter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    table {
+      width: 80vw;
+      margin: 5vh auto;
+      background-color: #fff;
+      padding: 1vw;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 5vw rgba(0,0,0,0.1);
+    }
+    tr {
+      margin-bottom: 1vh;
+    }
+    td {
+      padding: 0.5vw;
+      border-bottom: 1px solid #ddd;
+    }
+    input {
+      padding: 0.5vw;
+      border: 1px solid #ccc;
+      border-radius: 0.5vw;
+      height: 2vh;
+    }
+    #VCL_Description {
+      width: 87%;
+    }
+    #VCL_Keywords {
+      width: 87%;
+    }
+    #VCL_Codes {
+      resize: none;
+      width: 87%;
+      height: 50vh;
+    }
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 1vw 2vw;
+      border: none;
+      border-radius: 0.5vw;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3e8e41;
+    }
+    .github-button {
+      background-color: #1098b9;
+      color: #fff;
+      padding: 1vw 2vw;
+      border: none;
+      border-radius: 0.5vw;
+      cursor: pointer;
+    }
+    .github-button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Text Box Elements -->
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td><input id="VCL_Name" type="text" maxlength="25"></td>
+      <td>Version:</td>
+      <td><input id="VCL_Version" type="text" maxlength="25"></td>
+      <td>Author:</td>
+      <td><input id="VCL_Author" type="text" maxlength="25"></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td colspan="5"><input id="VCL_Description" type="text"></td>
+    </tr>
+    <tr>
+      <td>Keywords:</td>
+      <td colspan="5"><input id="VCL_Keywords" type="text" maxlength="200"></td>
+    </tr>
+    <tr>
+      <td colspan="6"></td>
+    </tr>
+    <tr>
+      <td>Codes:</td>
+      <td colspan="5"><textarea id="VCL_Codes"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="6" style="text-align: center;">
+        <button onclick="exportVCL()">Export to a .vcl file</button>
+        <a href="https://github.com/nirmalpaul383"><button class="github-button">Visit my GitHub page</button></a>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    function exportVCL() {
+      const name = document.getElementById('VCL_Name').value;
+      const version = document.getElementById('VCL_Version').value;
+      const author = document.getElementById('VCL_Author').value;
+      const description = document.getElementById('VCL_Description').value;
+      const keywords = document.getElementById('VCL_Keywords').value;
+      const codes = document.getElementById('VCL_Codes').value;
+
+      if (!name || !version || !author || !description || !keywords || !codes) {
+        alert("Please fill in all fields before exporting.");
+        return;
+      }
+
+      const xml = `
+<vcl>
+ <Name>${name}</Name>
+ <Version>${version}</Version>
+ <Author>${author}</Author>
+ <Description>${description}</Description>
+ <Keywords>${keywords}</Keywords>
+ <Codes><![CDATA[
+${codes}
+ ]]></Codes>
+</vcl>`;
+
+      const blob = new Blob([xml], { type: 'application/xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${name}.vcl`;
+      a.click();
+    }
+  </script>
+</body>
+</html>
