@@ -1,5 +1,5 @@
 # Voice_Commands
-A customizable Voice Assistant app that supports installable custom commands/functions via Voice Command Loader (.vcl) files. Users can extend its functionality by creating their own commands using JavaScript and distributing them through .vcl files.
+A customizable Voice Assistant that supports installable custom commands/functions via Voice Command Loader (.vcl) files. Users can extend its functionality by creating their own commands using JavaScript and distributing them through .vcl files.
 
 ## Features
 1. **Custom Installable Commands:**  Install your custom commands through .vcl files or manual code typing directly from the app's interface, allowing for endless possibilities.
