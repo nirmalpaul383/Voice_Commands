@@ -88,7 +88,7 @@ const VC_apis = new VCSL();
 
 
 ### For getting raw user queries data
-For getting raw user queries data use **`userQueries`** property of the `VC_OInfos' global object
+For getting raw user queries data use **`userQueries`** property of the `VC_OInfos` global object
 ```javascript
 // For getting user queries (user 's raw command such as "calculate 4585 + 4565") data from the global property VC_OInfos.
 let userQueries = VC_OInfos.userQueries;
@@ -96,7 +96,7 @@ let userQueries = VC_OInfos.userQueries;
 
 
 ### For getting the matching keyword value from the raw user queries data
-For getting the matching keyword value from the raw user queries data use **`matchedKey`** property of the `VC_OInfos' global object
+For getting the matching keyword value from the raw user queries data use **`matchedKey`** property of the `VC_OInfos` global object
 ```javascript
 // For getting the key value (by which this command is called e.g. "calculate") from the global property VC_OInfos.
 let matchedKey = VC_OInfos.matchedKey;
