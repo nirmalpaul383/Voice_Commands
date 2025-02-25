@@ -75,7 +75,7 @@ You can develop your own commands using JavaScript and using [Tasker's JavaScrip
 To create your own Command, follow these steps:
 1. **Write your codes:** Use any code editor to write the JavaScript code for your command.
 2. **Copy the code:** Copy the entire JavaScript code from the code editor.
-3. **Use VCL Exporter:** Open **VCL_Exporter.html** in browser (recommended browser is chrome) and paste the copied code.
+3. **Use VCL Exporter:** Open **VCL_Exporter.html** (Tools/VCL_Exporter.html) in browser (recommended browser is chrome) and paste the copied code.
 4. **Export as .vcl file:** Use the tool to wrap the JavaScript code into a Voice Command Loader (.vcl) file.
 
 
@@ -144,8 +144,40 @@ VC_apis.say(`You selected the ${selectedOptn} option`); //For saying the selecte
 
 ```
 
+## Here is a comprehensive API reference for Command Development for Voice Commands:
+| Added by  | Name | Category |Description |
+| ------------- |  ------------- |------------- | ------------ |
+| **VCSL**  | **`new VCSL()`**  | **ADDING VCSL TO THE COMMAND** |**For Creation of a new Voice Command Support Library object**  |
+| **VC_Engine Command**  | **`VC_OInfos.userQueries`**  | **GETTING RAW USER-QUIRES** |**For getting raw user queries data**  |
+| **VC_Engine Command** | **`VC_OInfos.matchedKey`**  | **GETTING MATCHED KEYWORD** |**For getting the matching keyword value**  |
+| **VC_Engine Command** | **`VC_OInfos.userQueries.slice ((VC_OInfos. matchedKey).length)`**  | **GETTING ONLY EXPRESSION** |**For getting the only expression portion from the raw user queries data**  |
+| **VCSL**  | **`.pitch_value`**  | **READING SETTING VALUES** |**For getting TTS pitch setting value**  |
+| **VCSL**  | **`.speed_value`**  | **READING SETTING VALUES** |**For getting TTS speed setting value**  |
+| **VCSL**  | **`.max_options_value`**  | **READING SETTING VALUES** |**For getting maximum option setting value**  |
+| **VCSL**  | **`.visual_feedback`**  | **READING SETTING VALUES** |**For getting the visual feedback status (either 'on' or 'off')**  |
+| **VCSL**  | **`.voice_language`**  | **READING SETTING VALUES** |**For getting TTS language value.**|
+| **VCSL**  | **`.stop_key`**  | **READING ADDITIONAL SETTING VALUES** |**For getting stop key value.**|
+| **VCSL**  | **`.info`**  | **READING VCSL INFORMATION** |**For getting information about currently installed VCSL**|
+| **VCSL**  | **`.customToast(toastMsg)`**  | **METHOD** |**For visually output some message**|
+| **VCSL**  | **`.performTaskWait(taskName, checkingInterval, maxWait)`**  | **METHOD** |**For performing Tasker 's task and wait for its completion Unlike native performTask(), which executes a Tasker task from JavaScript without waiting, performTaskWait() ensures the task is finished before proceeding. <br> <br> <ins> checkingInterval: </ins> In which interval should the check to be done to see if the task has finished or not. Increasing the interval period reduces system resource usage, while decreasing the interval period increases system resource usage. <br> <br> <ins> maxWait: </ins> Maximum wait time in milliseconds. If this timeout is exceeded, the function will stop waiting and continue executing the next code (except for 0 timeout). There are two types of values for max_timeout: (a) 0: Waits indefinitely until the task is completed. (b) Non-zero value: Waits for a maximum of the specified time (in ms).**|
+| **VCSL**  | **`.say(text)`**  | **METHOD** |**For saying output**|
+| **VCSL**  | **`.getVoice()`**  | **METHOD** |**For getting voice input and return the text**|
+| **VCSL**  | **`.options(...alternatives)`**  | **METHOD** |**For providing Voice Commands 's options interface**|
+| **VCSL**  | **`.arrayConverter(tasker_Array)`**  | **METHOD** |**For Converting Tasker 's array into JavaScript 's array format**|
+| **VCSL**  | **`.vclParser(vclData)`**  | **METHOD** |**For converting vcl data into JS object**|
+| **VCSL**  | **`.formatDate(dateStr)`**  | **METHOD** |**For formatting default date string format (e.g. 10-02-2025) into more readable / audible date format (e.g 10 February 2025)**|
+| **VCSL**  | **`.formatTime(timeStr)`**  | **METHOD** |**For formatting the default time string format (e.g. 17.45) into more readable / audible time format (e.g 5:45 PM)**|
 
-## Sample Command: Calculator
+## Example Command: Data Structure of the Calculator Command 
+```xml
+<vcl>
+ <Name>Calculator Command</Name>
+ <Version>v1.0.0</Version>
+ <Author>nirmalpaul383</Author>
+ <Description>A simple calculator command for evaluating simple math expressions (e.g "calculate 22 +358")</Description>
+ <Keywords>calculate, calculator, math expression</Keywords>
+ <Codes><![CDATA[
+```
 ```javascript
 // Calculator command is for evaluating simple math expressions
 // This project is originally made by me (N Paul) (https://github.com/nirmalpaul383). You can download
@@ -179,6 +211,10 @@ function evaluate(expression) {
 let result = evaluate(mathExpression); //For evaluating math expression and storing it in to result variable
 
 VC_apis.say(`The calculation answer is ${result}`); //For saying the calculation result
+```
+```xml
+]]></Codes>
+</vcl>
 ```
 
 ## Thanks
